@@ -1,13 +1,13 @@
 // Set port
-const port = 3000
+const port = 4000
 
-// Import express and set app
+// Express
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello World From Express');
-});
+const root = require('./routes/root');
+
+app.use('/id', root);
 
 //
 app.listen(port, () => console.log(`Listening on port ${port}...`));
