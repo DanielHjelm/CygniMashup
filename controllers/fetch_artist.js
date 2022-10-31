@@ -13,19 +13,33 @@ async function fetchArtist(req, res){
     // Set mbid
     const id = req.params.id
 
-    let artistObject = fetchArtistMusicBrianz(id)
+    // Fetch artist from MusicBrainz
+    let artistObj = fetchArtistMusicBrianz(id)
 
-    // let description = fetchDescriptionWikipedia("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=true&redirects=true&titles=Nirvana%20(band)")
+    
+    artistObj.then(function(artist) {
 
-    artistObject.then(function(artist) {
+    
+        let description = fetchDescriptionWikipedia(artist.url).then()
+
+        description.then(function(description){
+
+            res.send({
+                name: artist.name,
+                mbid: artist.mbid,
+                // url: artist.url,
+                description: description.data.query.pages[Object.keys(description.data.query.pages)[0]].extract,
+                albums: ''
+            })
+            
+        })
+        
         // Send artist object 
-        res.send(artist)
+        
 
      })
 
-    // res.status(200).json({
-    //     message: "hej"
-    // })
+    
 
     
 

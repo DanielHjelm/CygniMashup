@@ -17,18 +17,24 @@ function createArtist(artist){
     return {
         name: artist.data.name,
         mbid: artist.data.id,
-        url: MusicBrianzRelation(artist)
+        url: WikiDataID(artist),
+        description: ''
         
     };
 }
 
-function MusicBrianzRelation(artist){
-    // let relationTest = artist.data.relations.filter(
-    //     (function (relation) {
-    //         relation.type == "wikipedia"
-    //       })
-    // )
-    console.log(artist.data.relations)
+function WikiDataID(artist){
+    // Check if there exists a Wikidata ID and uses it if it exists
+    let relationTest = artist.data.relations.filter(
+        relation => relation.type == 'wikidata'
+      )[0];
+    
+    if (relationTest) {
+        return relationTest.url.resource;
+
+    } else {
+        return null
+    }
 
 
 }
