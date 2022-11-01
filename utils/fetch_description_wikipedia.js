@@ -3,31 +3,38 @@ const axios = require('axios');
 
 async function fetchDescriptionWikipedia(url){
     
+    // Fetch title using the URL
     let title = await fetchTitle(url)
 
+    // URL-encode title
     let uriTitle = encodeURIComponent(title)
 
+    // Fetch description from Wikipedia
     let description = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&
     exintro=true&redirects=true&titles=${uriTitle}`)
 
         
     return description
 
-    // const res = axios.get()
 
 }
 async function fetchTitle(url){
 
-    // Fetch WikiData ID
+    // Fetch WikiData ID by removing everything before the ID
     const wikiDataID = url.replace(/.+?\/wiki\//, '');
-    const newURL = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiDataID}&format=json&props=sitelinks`;
+
+    // Set the wikiDataURL based on the WikiData ID
+    const wikiDataURL = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiDataID}&format=json&props=sitelinks`;
     try {
-      const res = await axios.get(newURL);
+
+      // Get the title from the wikiDataURL
+      const res = await axios.get(wikiDataURL);
       const title = res.data.entities[
         Object.keys(res.data.entities)[0]
       ].sitelinks.enwiki.title
-      console.log
+
       return title;
+
     } catch (error) {
       throw new Error('Fetch title from WikiData failed');
     }

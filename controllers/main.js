@@ -4,7 +4,7 @@ const {fetchDescriptionWikipedia} = require('../utils/fetch_description_wikipedi
 
 
 
-async function fetchArtist(req, res){
+async function main(req, res){
 
     
     // Set header
@@ -19,23 +19,23 @@ async function fetchArtist(req, res){
     
     artistObj.then(function(artist) {
 
-    
-        let description = fetchDescriptionWikipedia(artist.url).then()
+        // Fetch the description from Wikipedia
+        let description = fetchDescriptionWikipedia(artist.url)
 
         description.then(function(description){
 
+
+            // Send the response
             res.send({
                 name: artist.name,
                 mbid: artist.mbid,
                 // url: artist.url,
                 description: description.data.query.pages[Object.keys(description.data.query.pages)[0]].extract,
-                albums: ''
+                albums: artist.infoAlbumbs
             })
             
         })
-        
-        // Send artist object 
-        
+                
 
      })
 
@@ -47,4 +47,4 @@ async function fetchArtist(req, res){
 
 }
 
-module.exports = { fetchArtist };
+module.exports = { main };

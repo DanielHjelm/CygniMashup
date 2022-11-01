@@ -3,7 +3,9 @@ const axios = require('axios');
 
 function fetchArtistMusicBrianz(id){
     try{
+        // Fetch artist from MusicBrainz using mbid
         return axios.get(`http://musicbrainz.org/ws/2/artist/${id}?&fmt=json&inc=url-rels+release-groups`).then(res => {
+            // Create artist object using the MusicBrainz information fetched
             return createArtist(res)
         })
 
@@ -14,12 +16,13 @@ function fetchArtistMusicBrianz(id){
 }
 
 function createArtist(artist){
+    // Create artist object with name, mbid and url with WikiDataID
+    console.log(infoAlbums(artist))
     return {
         name: artist.data.name,
         mbid: artist.data.id,
         url: WikiDataID(artist),
-        description: ''
-        
+        infoAlbumbs: infoAlbums(artist)         
     };
 }
 
@@ -33,9 +36,24 @@ function WikiDataID(artist){
         return relationTest.url.resource;
 
     } else {
-        return null
+        throw new Error("Could not find WikiData ID")
     }
 
+
+}
+
+function infoAlbums(artist){
+
+    // Fetch all data that have the "primary-type" = album
+    let albums = artist.data['release-groups'].filter(release => release["primary-type"].toLowerCase() == 'album')
+
+   // Return an array of albums containing only title and id information
+    return albums.map(album => {
+        return (album = {
+            title: album.title,
+            id: album.id
+        } 
+    )})
 
 }
 

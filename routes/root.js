@@ -1,14 +1,8 @@
 const router = require('express').Router();
-const controller = require('../controllers/fetch_artist');
+const controller = require('../controllers/main');
 
-
-// router.get('/', (req, res) => {
-//   res.setHeader('Content-Type', 'application/json');
-//   res.send(JSON.stringify('/api/artist/id'));
-// });
-
-router.get('/:id', controller.fetchArtist);
-
+// Router for ID
+router.get('/:id', controller.main);
 
 
 module.exports = router;
