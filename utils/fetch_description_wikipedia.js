@@ -34,7 +34,7 @@ async function fetchTitle(url){
       return title;
 
     } catch (error) {
-      throw new Error('Fetch title from WikiData failed');
+      throw console.log('Fetch title from WikiData failed', error);
     }
   }
 

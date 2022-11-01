@@ -44,7 +44,9 @@ function WikiDataID(artist){
 function infoAlbums(artist){
 
     // Fetch all data that have the "primary-type" = album
-    let albums = artist.data['release-groups'].filter(release => release["primary-type"].toLowerCase() == 'album')
+    // console.log(artist.data['release-groups'])
+    let albums = artist.data['release-groups'].filter(release => {
+        return release["primary-type"].toLowerCase() == 'album'})
 
    // Return an array of albums containing only title and id information
     return albums.map(album => {
