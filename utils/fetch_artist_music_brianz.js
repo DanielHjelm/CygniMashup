@@ -17,12 +17,11 @@ function fetchArtistMusicBrianz(id){
 
 function createArtist(artist){
     // Create artist object with name, mbid and url with WikiDataID
-    console.log(infoAlbums(artist))
     return {
         name: artist.data.name,
         mbid: artist.data.id,
         url: WikiDataID(artist),
-        infoAlbumbs: infoAlbums(artist)         
+        infoAlbums: infoAlbums(artist)         
     };
 }
 
@@ -36,7 +35,7 @@ function WikiDataID(artist){
         return relationTest.url.resource;
 
     } else {
-        throw new Error("Could not find WikiData ID")
+        throw new Error("Could not find WikiData url")
     }
 
 

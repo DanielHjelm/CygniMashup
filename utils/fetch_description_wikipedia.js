@@ -20,15 +20,13 @@ async function fetchDescriptionWikipedia(url){
 }
 async function fetchTitle(url){
 
-    // Fetch WikiData ID by removing everything before the ID
+    // Fetch WikiData ID by removing everything prior to the actual ID
     const wikiDataID = url.replace(/.+?\/wiki\//, '');
 
-    // Set the wikiDataURL based on the WikiData ID
-    const wikiDataURL = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiDataID}&format=json&props=sitelinks`;
     try {
 
-      // Get the title from the wikiDataURL
-      const res = await axios.get(wikiDataURL);
+      // Get the title from the wikiDataURL based on the WikiData ID
+      const res = await axios.get(`https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiDataID}&format=json&props=sitelinks`);
       const title = res.data.entities[
         Object.keys(res.data.entities)[0]
       ].sitelinks.enwiki.title
