@@ -17,7 +17,10 @@ $ npm run
 
 ### Send request to route
 /id/:id
-Example: localhost:4000/id/255e2420-5b02-452b-9771-0512ebe78090
+Example: 
+```sh
+$ localhost:4000/id/255e2420-5b02-452b-9771-0512ebe78090
+```
 
 ## Example answer
 {
