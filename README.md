@@ -2,7 +2,7 @@
 **Mashup REST API of MusicBrainz, Wikipedia and CoverArtArchive API:s**
 
 ## Installation
-``'sh
+```sh
 $ git clone git@github.com:DanielHjelm/CygniMashup.git
 $ cd CygniMashup
 $ npm install
