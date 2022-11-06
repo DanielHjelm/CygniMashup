@@ -2,7 +2,7 @@ const {
   fetchArtistMusicBrianz,
 } = require("../utils/fetch_artist_music_brianz");
 const {
-  fetchDescriptionWikipedia,
+fetchDescriptionWikipedia,
 } = require("../utils/fetch_description_wikipedia");
 const { fetchCoverArt } = require("../utils/fetch_cover_art");
 
@@ -10,11 +10,11 @@ async function main(req, res) {
   // Set header
   res.setHeader("Content-Type", "application/json");
 
-  // Set mbid
-  const id = req.params.id;
+  // // Set mbid
+  // const id = req.params.id;
 
   // Fetch artist from MusicBrainz
-  let artist = await fetchArtistMusicBrianz(id);
+  let artist = await fetchArtistMusicBrianz(req.params.id);
 
   // Fetch the description from Wikipedia
   let description = fetchDescriptionWikipedia(artist.url);
@@ -30,11 +30,12 @@ async function main(req, res) {
     res.send({
       name: artist.name,
       mbid: artist.mbid,
-      description: result[0].data.query.pages[Object.keys(result[0].data.query.pages)[0]].extract,
+      description:
+        result[0].data.query.pages[Object.keys(result[0].data.query.pages)[0]]
+          .extract,
       albums: [...result].slice(1),
     });
   });
-
 }
 
 module.exports = { main };
