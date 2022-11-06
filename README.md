@@ -15,14 +15,14 @@ $ npm install
 $ npm run
 ```
 
-### Send request to route
-/id/:id
+### Send request to route /id/:id
 Example: 
 ```sh
 $ localhost:4000/id/255e2420-5b02-452b-9771-0512ebe78090
 ```
 
 ## Example answer
+```json
 {
     "name": "Basshunter",
     "mbid": "255e2420-5b02-452b-9771-0512ebe78090",
@@ -65,3 +65,4 @@ $ localhost:4000/id/255e2420-5b02-452b-9771-0512ebe78090
         }
     ]
 }
+```
