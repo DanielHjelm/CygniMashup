@@ -1,3 +1,4 @@
+// Imports
 const axios = require('axios');
 
 
@@ -34,6 +35,7 @@ async function fetchTitle(url){
       return title;
 
     } catch (error) {
+      
       throw console.log('Fetch title from WikiData failed', error);
     }
   }

@@ -7,11 +7,9 @@ fetchDescriptionWikipedia,
 const { fetchCoverArt } = require("../utils/fetch_cover_art");
 
 async function main(req, res) {
+  
   // Set header
   res.setHeader("Content-Type", "application/json");
-
-  // // Set mbid
-  // const id = req.params.id;
 
   // Fetch artist from MusicBrainz
   let artist = await fetchArtistMusicBrianz(req.params.id);

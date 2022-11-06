@@ -66,3 +66,8 @@ $ localhost:4000/id/255e2420-5b02-452b-9771-0512ebe78090
     ]
 }
 ```
+
+## Further work
+- Error handling: Right now there is only very simple error handling implementing. If put in production, more advanced error handling including for example checking if the mbid input exists.
+- The API is quite slow at the moment which is mainly because the underlying APIs can be quite slow and have consumption restrictions. Further investigation needed to find a way to speed up the process.
+- Sometimes the cover art from Cover Art Archive can't be found. Why this happens needs the be further investigated.

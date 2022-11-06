@@ -1,3 +1,4 @@
+// Imports
 const axios = require('axios');
 
 async function fetchCoverArt(albumID){
@@ -13,8 +14,6 @@ async function fetchCoverArt(albumID){
           
         });
       } catch (error) {
-        // console.log(albumID)
-        // throw console.log("Fetch for cover art failed", error)
         return `Error when fetching cover art. Error code: ${error.response.status}`
       }
     }
