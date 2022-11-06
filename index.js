@@ -1,5 +1,5 @@
-// Set port
-const port = 4000
+// Set port to the port of the application or 4000
+const port = process.env.PORT || 4000;
 
 // Express
 const express = require('express');
